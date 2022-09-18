@@ -9,3 +9,4 @@ Keep in mind, you should rather not do it in your projects, it's just a showcase
 This repo was created solely for the following video:
 
 [![Video](https://img.youtube.com/vi/Hkl2JuCZTKE/0.jpg)](https://www.youtube.com/watch?v=Hkl2JuCZTKE)
+[![Video](https://img.youtube.com/vi/IKR8hpslNTw/0.jpg)](https://www.youtube.com/watch?v=IKR8hpslNTw)
