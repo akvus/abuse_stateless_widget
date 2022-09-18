@@ -1,16 +1,12 @@
 # abuse_stateless
 
-A new Flutter project.
+An example how a stateless widget can be abused in Flutter so that it not only have a mutable state but also renders it.
 
-## Getting Started
+Keep in mind, you should rather not do it in your projects, it's just a showcase that it's possible. Use stateful widgets if you need state or some handy package. 
 
-This project is a starting point for a Flutter application.
+## Video
 
-A few resources to get you started if this is your first Flutter project:
+This repo was created solely for the following video:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[![Video](https://img.youtube.com/vi/Hkl2JuCZTKE/0.jpg)](https://www.youtube.com/watch?v=Hkl2JuCZTKE)
+[![Video](https://img.youtube.com/vi/IKR8hpslNTw/0.jpg)](https://www.youtube.com/watch?v=IKR8hpslNTw)
