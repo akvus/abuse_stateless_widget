@@ -1,74 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 
-const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  var _counter = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: darkBlue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Button(),
-              InkWell(
-                  child: MyWidget(counter: _counter),
-                  onTap: () {
-                    setState(() {
-                      _counter++;
-                    });
-                  }),
-            ],
-          ),
+void main() => runApp(
+      MaterialApp(
+        home: LayoutBuilder(
+          builder: (context, constraints) =>
+              MyApp(height: constraints.maxHeight),
         ),
       ),
     );
-  }
-}
 
-class Button extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      child: Text('Click me'),
-      onTap: () {
-        final state = context.findAncestorStateOfType<_MyAppState>()!;
-        state.setState(() {
-          state._counter = 12;
-        });
-      },
-    );
-  }
-}
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key, required this.counter});
-
-  final int counter;
+class MyApp extends StatefulWidget {
+  const MyApp({super.key, required this.height});
+  final double height;
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      'Hello, World! $counter',
-      style: Theme.of(context).textTheme.headline4,
-    );
+  MyAppState createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> with TickerProviderStateMixin {
+  late final AnimationController controller;
+
+  @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
   }
+
+  @override
+  void initState() {
+    final endDistance = widget.height;
+    final acceleration = widget.height * 1.5;
+    const distance = 0.0;
+    const initialVelocity = 0.0;
+
+    final gravitySimulation = GravitySimulation(
+      acceleration,
+      distance,
+      endDistance,
+      initialVelocity,
+    );
+
+    controller = AnimationController(vsync: this, upperBound: endDistance);
+    controller.animateWith(gravitySimulation);
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) => Center(
+        child: AnimatedBuilder(
+            animation: controller,
+            builder: (context, child) {
+              return SizedBox(
+                width: double.infinity,
+                height: controller.value,
+                child: Container(color: Colors.green),
+              );
+            }),
+      );
 }
