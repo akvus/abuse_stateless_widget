@@ -4,8 +4,12 @@ import 'package:flutter/physics.dart';
 void main() => runApp(
       MaterialApp(
         home: LayoutBuilder(
-          builder: (context, constraints) =>
-              MyApp(height: constraints.maxHeight),
+          builder: (context, constraints) => Scaffold(
+            backgroundColor: Colors.black,
+            body: MyApp(
+              height: constraints.maxHeight,
+            ),
+          ),
         ),
       ),
     );
@@ -31,7 +35,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   @override
   void initState() {
     final endDistance = widget.height;
-    final acceleration = widget.height * 1.5;
+    final acceleration = widget.height / 2;
     const distance = 0.0;
     const initialVelocity = 0.0;
 
@@ -49,15 +53,13 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) => Center(
-        child: AnimatedBuilder(
-            animation: controller,
-            builder: (context, child) {
-              return SizedBox(
-                width: double.infinity,
-                height: controller.value,
-                child: Container(color: Colors.green),
-              );
-            }),
-      );
+  Widget build(BuildContext context) => AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        return SizedBox(
+          width: double.infinity,
+          height: controller.value,
+          child: Container(color: Colors.green),
+        );
+      });
 }
