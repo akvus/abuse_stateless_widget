@@ -30,7 +30,12 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
     super.initState();
 
     _controller = AnimationController(vsync: this, upperBound: widget.height);
-    _controller.animateWith(GravitySimulation(1000, 0, widget.height, 0));
+    _controller.animateWith(SpringSimulation(
+      SpringDescription(mass: 0.3, stiffness: 4, damping: 3),
+      0,
+      widget.height,
+      20,
+    ));
   }
 
   @override
