@@ -25,16 +25,17 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   late final AnimationController _controller;
   late final Simulation _simulation;
+  late final endPoint = widget.height / 2;
 
   @override
   void initState() {
     super.initState();
 
     _simulation = SpringSimulation(
-      const SpringDescription(mass: 0.1, stiffness: 4, damping: 1),
-      widget.height / 2,
-      widget.height / 4,
-      20,
+      const SpringDescription(mass: 0.4, stiffness: 4, damping: 0.99),
+      0,
+      endPoint,
+      100,
     );
 
     _controller = AnimationController(vsync: this, upperBound: widget.height);
@@ -65,7 +66,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
               height: 150,
               child: SimulationGraph(
                 simulation: _simulation,
-                maxValue: widget.height,
+                maxValue: endPoint,
               ),
             ),
           ),
@@ -106,6 +107,8 @@ class SimulationPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // should investigate why ~111% is the max, but I'm lazy
+    final yDivision = 111 / size.height;
     canvas.drawRect(
       Rect.fromLTWH(0, 0, size.width, size.height),
       _backgroundPaint,
@@ -122,8 +125,9 @@ class SimulationPainter extends CustomPainter {
     double t = 0.0;
     for (int x = 0; x < size.width; x++, t += 0.1) {
       final dt = t.toDouble();
-      final y = simulation.x(dt) * _yDivisionFactor;
+      if (simulation.isDone(dt)) break;
 
+      final y = simulation.x(dt) * _yDivisionFactor * yDivision;
       path.lineTo(x.toDouble(), y);
     }
 
