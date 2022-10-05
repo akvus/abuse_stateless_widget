@@ -1,5 +1,5 @@
-import 'simulation.dart' as X;
+import 'custom_simulation.dart' as simulation;
 
 void main() {
-  X.main();
+  simulation.main();
 }
