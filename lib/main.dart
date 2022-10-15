@@ -1,5 +1,5 @@
-import 'custom_simulation.dart' as simulation;
+import 'draggable.dart' as example;
 
 void main() {
-  simulation.main();
+  example.main();
 }
