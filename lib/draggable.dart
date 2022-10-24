@@ -44,7 +44,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Draggable<int>(
               // Data is the value this Draggable stores.
               data: 10,
-              dragAnchorStrategy: centerDragAnchorStrategy,
+              dragAnchorStrategy: pointerDragAnchorStrategy,
               feedback: Container(
                 color: Colors.deepOrange,
                 height: 100,
