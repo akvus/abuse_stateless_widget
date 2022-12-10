@@ -13,6 +13,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   sliver_tools: ^0.2.8
+  fraction: ^4.1.4
 
 dev_dependencies:
   flutter_test:
