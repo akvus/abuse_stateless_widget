@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'widget/simulation_graph.dart';
+
 void main() => runApp(
       MaterialApp(
         home: LayoutBuilder(
