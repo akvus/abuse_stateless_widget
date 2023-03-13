@@ -1,8 +1,6 @@
 import 'dart:math';
 
-import 'package:abuse_stateless/widget/simulation_graph.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
 
 void main() => runApp(
       MaterialApp(

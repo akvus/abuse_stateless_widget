@@ -1,4 +1,4 @@
-import 'riverpod/riverpod.dart' as example;
+import 'boxes.dart' as example;
 
 void main() {
   example.main();
